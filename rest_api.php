@@ -1,7 +1,5 @@
 <?php 
 
-
-
 header("content-type: application/json");
 
 $method = $_SERVER["REQUEST_METHOD"];
@@ -35,7 +33,7 @@ switch ($method) {
 function getMethod(){
 
 	require 'db.php';
-   
+
 	$stmt = $pdo->query("SELECT * FROM tbl_student" );
 	
 	$fetchData = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -98,7 +96,6 @@ function updateMethod($data){
 		$dep,
 		$age,
 		$id    
-
 	]);
 
 	if ($update) {
@@ -119,17 +116,13 @@ function deleteData($data){
 	require 'db.php';
 
 	$id = $data["id"];
-
 	$stmt = $pdo->prepare("DELETE FROM tbl_student WHERE id=?");
-
 	$delete = $stmt->execute([$id]);
 
 
 	if ($delete) {
-		
 		echo '{"output" : "data deleted successfully"}';
 	}
-
 	else{
 		echo '{"output" : "data not deleted"}';
 	}
